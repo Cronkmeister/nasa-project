@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const MONGO_URL = `mongodb+srv://nasa-api:${process.env.MONGO_PASSWORD}@cluster0.jfi08o9.mongodb.net/?retryWrites=true&w=majority`;
+const MONGO_URL = process.env.MONGO_URL;
 
 //mongoose event listeners
 mongoose.connection.once("open", () => {
