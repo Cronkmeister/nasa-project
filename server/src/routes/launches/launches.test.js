@@ -1,10 +1,12 @@
 const request = require("supertest");
 const app = require("../../app");
+const { loadPlanetsData } = require("../../models/planets.model");
 const { mongoConnect, mongoDisconnect } = require("../../services/mongo");
 
 describe("Launches API", () => {
   beforeAll(async () => {
     await mongoConnect();
+    await loadPlanetsData();
   });
 
   afterAll(async () => {
@@ -16,8 +18,7 @@ describe("Launches API", () => {
       const response = await request(app)
         .get("/v1/launches")
         .expect("Content-Type", /json/)
-        .expect(200);
-      // line 9 same as writing: expect(response.statusCode).toBe(200);
+        .expect(200); // same as writing: expect(response.statusCode).toBe(200);
     });
   });
 
@@ -67,7 +68,7 @@ describe("Launches API", () => {
         error: "Missing required launch property",
       });
     });
-    test("It should catch invalid daters", async () => {
+    test("It should catch invalid dates", async () => {
       const response = await request(app)
         .post("/v1/launches")
         .send(launchDataWithInvalidDate)
