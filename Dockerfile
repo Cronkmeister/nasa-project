@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM --platform=arm64 node:lts-alpine
 
 WORKDIR /app
 
@@ -19,6 +19,6 @@ COPY server/ server/
 
 USER node
 
-CMD [ "npm", 'start', "--prefix", "server" ]
+CMD [ "npm", "start", "--prefix", "server" ]
 
 EXPOSE 8000
