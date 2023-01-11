@@ -1,4 +1,6 @@
-FROM --platform=arm64 node:lts-alpine
+FROM node:lts-alpine
+# --platform=arm64 
+# The requested image's platform (linux/arm64) does not match the detected host platform (linux/amd64)
 
 WORKDIR /app
 
